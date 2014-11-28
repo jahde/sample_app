@@ -19,7 +19,8 @@ describe "User pages" do
       before(:all)  { 30.times { FactoryGirl.create(:user) } }
       after(:all)   { User.delete_all }
 
-      it { should have_selector('div.paginaton') }
+      it { should have_css('div.pagination') }
+      #it { should have_selector('div.pagination') }
 
       it "should list each user" do
         User.paginate(page: 1).each do |user|
@@ -72,7 +73,7 @@ describe "User pages" do
 
       describe "after saving the user" do
         before { click_button submit }
-        # let(:user) { User.find_by(email: 'user@example.com') } # this is not needed any more
+        #let(:user) { User.find_by(email: 'user@example.com') } # this is not needed any more
 
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
