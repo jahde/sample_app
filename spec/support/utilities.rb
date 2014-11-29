@@ -14,6 +14,10 @@ def sign_in(user, options={})
   end
 end
 
+def sign_out
+  click_link "Sign out"
+end
+
 def valid_signin(user)
   fill_in "Email",        with: user.email
   fill_in "Password",     with: user.password

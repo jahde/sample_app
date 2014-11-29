@@ -34,9 +34,11 @@ describe "User pages" do
       it { should_not have_link('delete') }
 
       describe "as an admin user" do
-        let!(:admin) { FactoryGirl.create(:admin, name: "test admin", email: "testadmin@example.com") }
+        let!(:admin) { FactoryGirl.create(:admin) }
+
         before do
-          FactoryGirl.create(:user, name: "test 1", email: "test1@example.com")
+          #Sign out all other users first
+          sign_out
           sign_in admin
           visit users_path
         end
