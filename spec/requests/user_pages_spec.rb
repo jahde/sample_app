@@ -40,6 +40,7 @@ describe "User pages" do
           #Sign out all other users first
           sign_out
           sign_in admin
+          binding.pry
           visit users_path
         end
 
