@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
+  before_filter :restrict_registration, only: [:new, :create]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -52,6 +53,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
+  end
+
+  def restrict_registration
+    redirect_to root_url, notice: "You are already registered." if signed_in?
   end
 
   # Before filters

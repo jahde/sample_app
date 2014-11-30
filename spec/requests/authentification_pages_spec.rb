@@ -9,6 +9,12 @@ describe "Authentication" do
 
     it { should have_content('Sign in') }
     it { should have_title('Sign in') }
+
+    it { should_not have_link('Users') }
+    it { should_not have_link('Profile') }
+    it { should_not have_link('Settings') }
+    it { should_not have_link('Sign out', href: signout_path) }
+    it { should have_link('Sign in', href: signin_path) }
   end
 
   describe "signin" do
@@ -116,6 +122,21 @@ describe "Authentication" do
           put user_path(wrong_user)
         end
         specify { response.should redirect_to(root_url) }
+      end
+    end
+
+    describe "as signed-in user" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user, no_capybara: true }
+
+      describe "cannot acces #new action" do
+        before { get new_user_path }
+        specify { response.should redirect_to(root_path) }
+      end
+
+      describe "cannot access #create action" do
+        before { post users_path(user) }
+        specify { response.should redirect_to(root_path) }
       end
     end
   end

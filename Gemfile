@@ -10,13 +10,17 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem 'pg', '0.15.1'
 gem 'devise'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+  # The following optional lines are part of the advanced setup.
+  # gem 'guard-rspec', '2.5.0'
+  # gem 'spork-rails', '4.0.0'
+  # gem 'guard-spork', '1.5.0'
+  # gem 'childprocess', '0.3.6'
 end
 
 group :test do
@@ -27,7 +31,9 @@ group :test do
   gem 'factory_girl_rails', '4.2.0'
   gem 'cucumber-rails', '1.4.0', :require => false
   gem 'database_cleaner', github: 'DatabaseCleaner/database_cleaner'
-  #gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  # gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  # Uncomment this line on OS X.
+  # gem 'growl', '1.0.3'
 end
 
 # Use SCSS for stylesheets
@@ -57,7 +63,7 @@ group :doc do
 end
 
 group :production do
-  #gem 'pg', '0.15.1'
+  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
 
