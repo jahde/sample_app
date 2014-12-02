@@ -28,3 +28,5 @@ module SampleApp
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
+
+
