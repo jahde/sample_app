@@ -45,8 +45,10 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
 
-  RSpec.configure do |config|
-    config.include Devise::TestHelpers, :type => :controller
-    config.include(Capybara, :type => :integration)
-  end
+  config.include Devise::TestHelpers, :type => :controller
+
+  config.include(Capybara, :type => :integration)
+
+  include Warden::Test::Helpers
+  Warden.test_mode!
 end
